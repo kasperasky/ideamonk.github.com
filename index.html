@@ -1,1 +1,49 @@
-foo
+<html>
+
+<head>
+    <style type="text/css">
+        .upload_box {
+            border: 1px solid #ababab;
+            padding:10px;
+            margin:10px;
+            width:300px;
+        }
+        input {
+            margin:3px;
+		}
+		.closebutton {
+			text-decoration:none;
+		}
+    </style>
+    <script type="text/javascript">
+        var multi_count=0;
+        function AddUpload()
+        {
+            multi_count+=1;
+            
+            var u_area = document.getElementById("upload_form");
+            
+			u_area.innerHTML = u_area.innerHTML + "<div class='upload_group' id='upload_group" + multi_count.toString() + "'> <input type='file' name='file_" + multi_count.toString() + "'/> <a href='javascript:RemoveUpload(" + multi_count.toString() + ")' class='closebutton'>x</a></div>";
+        }
+
+        function RemoveUpload(i)
+		{
+			var element = document.getElementById ("upload_form");
+			var child = document.getElementById ("upload_group" + i.toString());
+			element.removeChild(child);
+        }
+
+            
+    </script>
+</head>
+<body>
+    <div class="upload_box">    
+		<form id="upload_form" acion="photos/upload" content-type="multipart/mixed">
+			<div id="upload_group">
+	            <input type="file" name="file0"/>
+			</div>
+        </form>
+    </div>
+    <a href="javascript:AddUpload()">add more</a>
+</body>
+</html>
